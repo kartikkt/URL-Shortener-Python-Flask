@@ -36,6 +36,11 @@ Sample Result
 https://user-images.githubusercontent.com/81873220/167933693-1bad395f-36eb-4f8c-90c8-2d3f7fd26f73.mp4
 
 
+Installation and Running the program
+=========================
+1. A Virtual environment(venv) was created within the project and latest versions of Flask and pytest were installed. The version in the requirment.txt caused issues with jinja2 and attr libraries.
+2. Project was run using `python run.py` inside venv and testing was done using command `pytest -v`
+
 Fallbacks stratergies
 ======================
 1. When No provider is selected, I have chosen Bit.ly by default.
@@ -46,4 +51,5 @@ Future improvements
 ===================
 
 1. The functions ingesting the provider's API call can be placed in another file to provide more abstraction. For the time being, abstraction is attained by creating separate function calls for bit.ly and tiny_url
-2. In future, a database can be connected to store the newly link data, so that we are not required to use the provider's API everytime.
+2. In future, a database can be connected to store the newly link data, so that we are not required to use the provider's API everytime. For this very reason, schema like- Link_Schema and Shortlink were created. However, only a single scheme can also work out in actual prodcution.  
+    (Two Schemas were prepared just to follow with the task)
