@@ -21,8 +21,6 @@ def create_shortlink():
     shortlink = get_shortened_url(response)
     response_for_shortUrl = json.loads(json.dumps(shortlink.__dict__))
     
-                   
-    #return  jsonify(json.dumps(shortlink.__dict__))
     return render_template('link.html', title="page", jsonfile=response_for_shortUrl,
                              response_status = response_status)
     

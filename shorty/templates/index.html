@@ -1,17 +1,44 @@
-<div>
-    
-    <p style="text-align:center">
-    <b>Software Engineer Task - Plum Fintech </b> </p>
+<!DOCTYPE html>
+<html>
 
-    <form method="POST" action="{{ url_for('api.create_shortlink') }}">
-        <p style="text-align:center">
-        <input type="text" name="original_url"  placeholder=" Enter URL "> <br>
-        Choose URL Shortener Method:     
-        <input type="radio" id="Choice1" name="url_method" value= "bit.ly" unchecked>
-        <label>bit.ly</label>
-        <input type="radio" id="Choice2" name="url_method" value= "tiny_url">
-        <label>tiny url</label> <br>
-        <input type="submit" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Plum Fintech SDE Task</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+    <section>
+        <p style="text-align:center "><br><br>
+            <b> Software Engineer Task - Plum Fintech </b>
         </p>
-</form> 
-</div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <form method="POST" action="{{ url_for('api.create_shortlink') }}">
+                <div class="field">
+                    <label class="label">Original URL</label>
+                    <div class="control">
+                        <input class="input" type="text" name="original_url" placeholder=" Enter URL ">
+                    </div>
+
+                </div>
+                <div class="ShortenMethod">
+                    <label class="label">URL Shortener Method: </label>
+                    <input type="radio" id="Choice1" name="url_method" value="bit.ly" unchecked>
+                    <label>bit.ly</label>
+                    <input type="radio" id="Choice2" name="url_method" value="tiny_url">
+                    <label>tiny url</label> <br>
+                </div><br>
+                <div class="control">
+                    <button type="submit" class="button is-info">Shorten</button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

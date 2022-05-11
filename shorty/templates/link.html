@@ -1,31 +1,59 @@
 <!DOCTYPE html>
 <html>
-  
-  <head>
-    <script>
-      var jsonfile =jsonfile;
-      var response_status = response_status;
-    </script>
-  </head>
 
-  <body>
-       
-    <p style="text-align:center" > 
-      <table class="table" style="border:2px dotted blue; margin-left:auto;margin-right:auto;"  >
-        <tbody>
-          <tr>
-            <td>Status</td>
-            <td> {{response_status}} </td>
-          </tr>
-          <tr>
-            <td>Response</td>
-            <td> {{jsonfile}} </td>
-          </tr>
-        </tbody>
-      </table>
-      <a href="/"> Go to Home </a> 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plum Fintech SDE Task</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script>
+    var jsonfile = jsonfile;
+    var response_status = response_status;
+  </script>
+</head>
+
+<body>
+  <section>
+    <br>
+    <p style="text-align:center">
+    <table class="table" style="border:2px dotted blue; margin-left:auto;margin-right:auto;">
+      <tbody>
+        <tr>
+          <td>Status</td>
+          <td> {{response_status}} </td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td> {{jsonfile}} </td>
+        </tr>
+      </tbody>
+    </table>
     </p><br>
+  </section>
 
-  </body>
+  <section class="section">
+    <div class="container">
+      <div class="field">
+        <label class="label">Original URL</label>
+        <div class="control">
+          <input class="input" type="text" name="original_url" value="{{ jsonfile['url'] }}">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">New URL</label>
+        <div class="control">
+          <input class="input" type="text" name="original_url" value="{{ jsonfile['link'] }}">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section> 
+    <p style="text-align:center"> 
+      <a href="/"> Go to Home </a> 
+    </p>
+  </section>
+</body>
 
 </html>
