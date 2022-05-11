@@ -12,15 +12,16 @@ from shorty.model import Link_Schema, Shortlink
 import requests
 
 api = Blueprint('api', __name__)
+
+#Used to record the Http status code and description for every request
 response_status = None
 
 @api.route('/shortlinks', methods=['POST'])
 def create_shortlink():
     response = dict(request.form)
-    print(response)
     shortlink = get_shortened_url(response)
     response_for_shortUrl = json.loads(json.dumps(shortlink.__dict__))
-    
+
     return render_template('link.html', title="page", jsonfile=response_for_shortUrl,
                              response_status = response_status)
     
@@ -33,14 +34,22 @@ def index():
     return render_template("index.html")
 
 def get_shortened_url(response):
-
+    '''
+    This function takes in response from the route and decides the provider and finds then
+    calls relevant provider for the short url
+    '''
     long_url = response['original_url']
+
+    #if no provider is selected then go for 'bit.ly'
     if 'url_method' not in response.keys() or response['url_method'] == "bit.ly" :
         return bitly(long_url)
     elif response['url_method'] == "tiny_url":
         return tiny_url(long_url)
         
 def tiny_url(long_url):
+    '''
+    Function ingesting a tiny_url api to provide shortened url
+    '''
     global response_status
     request_url = ('http://tinyurl.com/api-create.php?' + urlencode({'url': long_url })) 
     shortlink = Shortlink(long_url)
@@ -54,18 +63,25 @@ def tiny_url(long_url):
         return shortlink
 
 def bitly(long_url):
+    '''
+    Function ingesting a Bit.ly api to provide shortened url
+    '''
     global response_status
-    access_token = ['14215a807e3dfcb7c7ab612706cf4302e7ab8fda']
+
+    access_token = ['14215a807e3dfcb7c7ab612706cf4302e7ab8fda'] 
+    
     query_params = {
         'access_token': access_token,
         'longUrl': long_url
     }
+
     shortlink = Shortlink(long_url)
     endpoint = 'https://api-ssl.bitly.com/v3/shorten'
     response = requests.get(endpoint, params=query_params, verify=False)
     data = response.json()
-    print(data)
-    if data['status_code'] in range(199,300):
+
+    #if success then stores the short url
+    if data['status_code'] in range(200,300):
         shortlink.link = str(data['data']['url'])
     response_status = "Code : " + str(data['status_code']) + " => " + HTTPStatus(data['status_code']).phrase
     return shortlink

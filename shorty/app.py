@@ -5,6 +5,7 @@ from shorty.api import api
 def create_app(settings_overrides=None):
     app = Flask(__name__)
     configure_settings(app, settings_overrides)
+    
     configure_blueprints(app)
     return app
 
