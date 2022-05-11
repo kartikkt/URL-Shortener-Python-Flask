@@ -1,0 +1,17 @@
+<div>
+    
+    <p style="text-align:center">
+    <b>Software Engineer Task - Plum Fintech </b> </p>
+
+    <form method="POST" action="{{ url_for('api.create_shortlink') }}">
+        <p style="text-align:center">
+        <input type="text" name="original_url"  placeholder=" Enter URL "> <br>
+        Choose URL Shortener Method:     
+        <input type="radio" id="Choice1" name="url_method" value= "bit.ly" unchecked>
+        <label>bit.ly</label>
+        <input type="radio" id="Choice2" name="url_method" value= "tiny_url">
+        <label>tiny url</label> <br>
+        <input type="submit" >
+        </p>
+</form> 
+</div>
